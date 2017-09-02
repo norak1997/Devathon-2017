@@ -14,8 +14,6 @@ def signin(request):
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
-		print(username)
-		print(password)
 		user = authenticate(username=username,password=password)
 		print(user)
 		if user is None:
@@ -24,7 +22,6 @@ def signin(request):
 			login(request,user)
 		return redirect('/main')#render the dashboard page
 	else:
-		print("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
 		return render(request,'Login/signin.html',None)
 
 def signup(request):
@@ -60,7 +57,6 @@ def signup(request):
 			login(request,user)
 			return redirect('/main')
 	else:
-		print("Not Working")
 		return render(request,'Login/signup.html',None) 
 
 def signout(request):

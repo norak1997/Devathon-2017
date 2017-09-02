@@ -30,10 +30,7 @@ def add(request):
 		price1 = (quant * perprice)
 		m=UserProfile.objects.filter(regno = regno)
 		t=m[0].extras
-		print(t)
-		print(" Hello ")
 		price2=t+price1
-		print(price2)
 		pur = Purchase(regno=regno,item=item,quantity=quant,price=price1)
 		pur.save()
 		use = UserProfile.objects.filter(regno = regno).update(extras =price2)
