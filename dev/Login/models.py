@@ -6,10 +6,11 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class UserProfile(models.Model):
+	types = (('Mess Worker','Mess Worker'),('Student','Student'))
 	user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
-	address = models.CharField(max_length=100)
-	typid = models.CharField(max_length=1)
-	mbno = models.CharField(max_length=10)
+	typid = models.CharField(max_length = 30,choices = types,default='Student')
+	extras = models.IntegerField(max_length = 5,default = 0)
+	regno = models.IntegerField(max_length = 6)
 
 
 	def __str__(self):

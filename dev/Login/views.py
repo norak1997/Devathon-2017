@@ -14,6 +14,8 @@ def signin(request):
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
+		print(username)
+		print(password)
 		user = authenticate(username=username,password=password)
 		print(user)
 		if user is None:
@@ -22,6 +24,7 @@ def signin(request):
 			login(request,user)
 		return redirect('/main')#render the dashboard page
 	else:
+		print("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
 		return render(request,'Login/signin.html',None)
 
 def signup(request):
@@ -29,18 +32,18 @@ def signup(request):
 # if request.user.is_authenticated() == True and request.user.is_active == True:
 # 	return render(request,'Login/dashboard.html',None)
 	if request.method == 'POST':
-		print(request.POST)
-		username = request.POST['username']
+		firstName = request.POST['first_name']
 		password = request.POST['password']
 		password2 = request.POST['re_password']
-		firstName = request.POST['first_name']
+		username = request.POST['username']
 		lastName = request.POST['last_name']
 		if password2 != password:
 			return render(request,'Login/signup.html',{'error':'Password doesn\'t match'})
 		emailAddr = request.POST['email']
 		contact = request.POST.get('contact')
 		address = request.POST['address']
-		# regno = request.POST.get('regno')
+		regno = request.POST.get('regno')
+		typid = request.POST.get('typid')
 		try:
 			u = User._default_manager.get(username__iexact=username) #fix for case sensitive username
 			return render(request,'Login/signup.html',{'error':'username already already exists!'})
@@ -50,16 +53,14 @@ def signup(request):
 			user.is_active = True
 			# print "hi there"
 			user.save()
-			profileobject = UserProfile(user=user,address=address,mbno=contact)
+			profileobject = UserProfile(user=user,address=address,mbno=contact,regno=regno,typid=typid)
 			profileobject.save()
-			print("HELLOO")
-			print (profileobject)
-			print("HELLOO")
 			user.backend = 'django.contrib.auth.backends.ModelBackend' #user backend error fix
 			authenticate(username=username,password=password)
 			login(request,user)
 			return redirect('/main')
 	else:
+		print("Not Working")
 		return render(request,'Login/signup.html',None) 
 
 def signout(request):
