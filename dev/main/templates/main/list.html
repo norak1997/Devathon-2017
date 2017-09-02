@@ -195,47 +195,42 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-    <br><br><br>   
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>  
-
+        <span class="icon-bar"></span>                        
       </button>
+      <a class="navbar-brand" href="#myPage">Logo</a>
     </div>
-      </div>
-        </div>
-        </div>
-        </nav>
-  <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h1 class="header center orange-text text-lighten-2" style="margin-left:420px; ">OMAHA MESS</h1>
-        <div class="row center" >
-      
-        
-          <form action="{% url 'Login:signin' %}" method="post" class="center">
-            {% csrf_token %}
-            <div class="form-group">
-            <label for="username" class="col-form-label">Username</label>
-            <input type="text" class="form-control" name="username" placeholder="Username">
-            </div>
-            <div class="form-group">
-            <label for="password" class="col-form-label">Password</label>
-            <input type="password" class="form-control" name="password" placeholder="Password">
-            </div>
-            <div class="row center">
-              <input type="submit" class=" btn green darken-4 thin-letters-3 btn-lg" value = "Sign in" style="    margin-left: 450px;
-    margin-top: 111px">
-              <br><br><br><br><br><br><br><br><br>
-              <a href="/Login/signup"><button class=" btn green darken-4 thin-letters-3 btn-lg" style="margin-left: 648px;
-    margin-top: -496px;">Sign Up</button></a>
-            </div>
-          </form>
-        </div>
-      </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href = "/main">Home</a></li>
+        <li><a href = "/Login/signout">Logout</a></li>
+      </ul>
     </div>
   </div>
-</body>
-</html>
+</nav>
+
+<div class="jumbotron text-center">
+  <h1>OMAHA</h1> 
+  <p>We serve you the best facilities</p>
+ </div> 
+ <div>
+ <h2 align="center"> Total extra is {{ ext }} </h2>
+ </div>
+<div class="table-responsive">
+  <table class="table table-bordered" style="margin-left: 300px; margin-right: 200px;" >
+    <tr>
+    <th> Item </th>
+    <th> Quantity </th>
+    <th> Date </th>
+    </tr>
+    {% for r in rec %}  
+    <tr>
+    <th>{{ r.item }}</th>
+    <th>{{ r.quantity }}</th>
+ 	<th>{{r.date}}</th> 
+	{% endfor %}
+  </table>
+</div>
+ 
